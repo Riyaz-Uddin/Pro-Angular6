@@ -1,0 +1,113 @@
+<style>
+  .form-group label {
+    justify-content: left !important;
+  }
+</style>
+
+<div class="row justify-content-center align-items-center ml-2">
+
+
+  <form>
+
+    <h1>
+      Items CRUD in Angular6!
+    </h1>
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Category Table</h2>
+        <div class="form-group">
+          <label for="CategoryId">Category Id</label>
+          <input id="CategoryId" name="CategoryId" #CategoryId [value]=CategoryId2 class="form-control" (input)="deptchange()" [(ngModel)]="CategoryId2" />
+        </div>
+
+        <div class="form-group">
+          <label for="CategoryName">Category Name</label>
+          <input id="CategoryName" name="CategoryName" #CategoryName [value]=CategoryName2 class="form-control" [(ngModel)]="CategoryName2" />
+        </div>
+
+        <div class="form-group">
+          <label for="Author">Author</label>
+          <input id="Author" name="Author" #Author [value]=Author2 class="form-control" [(ngModel)]="Author2" />
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="form-group form-inline">
+          <label class="col-md-4 text-left" for="BookId">Book ID:</label>
+          <input name="BookId" id="BookId" #BookId [value]=BookId2 class="form-control col-md-8" [(ngModel)]="BookId2" />
+        </div>
+        <div class="form-group form-inline">
+          <label class="col-md-4 text-left" for="BookName">Book Name:</label>
+          <input name="BookName" id="BookName" #BookName [value]=BookName2 class="form-control col-md-8" [(ngModel)]=BookName2 />
+        </div>
+
+        <div class="form-group form-inline">
+          <label class="col-md-4 text-left" for="Description">Description:</label>
+          <input name="Description" id="Description" #Description [value]=Description2 class="form-control col-md-8" [(ngModel)]="Description2" />
+        </div>
+        <div class="form-group form-inline">
+          <label class="col-md-4 text-left" for="Active">Active:</label>
+          <input name="Active" id="Active" #Active [value]=Active2 class="form-control col-md-8" [(ngModel)]="Active2" />
+        </div>
+        <div class="form-group form-inline">
+          <label class="col-md-4 text-left" for="Date">Date:</label>
+          <input type="Date" name="Date" id="Date" #Date [value]=Date2 class="form-control col-md-8" [(ngModel)]="Date2" />
+        </div>
+        <div class="form-group form-inline">
+          <label class="col-md-4 text-left" for="Price">Price:</label>
+          <input type="text" name="Price" id="Price" #Price [value]=Price2 class="form-control col-md-8" [(ngModel)]="Price2" />
+        </div>
+        <div class="form-group form-inline">
+          <label class="image-upload-container btn btn-bwm col-md-4 text-left">
+            <span>Select Image</span>
+          </label>
+          <input type="file" name="Image" id="Image" (change)="onFileChanged($event)" class="form-control col-md-8" />
+          <br />
+        </div>
+
+
+        <button type="button" (click)="addItems(BookId.value, BookName.value,CategoryId.value,Description.value,Active.value,Date.value,Price.value,'')" class="btn-primary btn mr-3">Add</button>
+        
+        <button type="button" class="btn btn-info mr-3" (click)="updateItems(BookId, BookName,CategoryId,Description,Active,Date,Price)">Update</button>
+
+        <button type="button" (click)="deleteItems()" class="btn btn-success mr-3">Delete</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+
+<div class="row">
+  <table class="table table-condensed">
+    <tr>
+      <th>SL No</th>
+      <th>Book ID</th>
+      <th>Book Name</th>
+      <th>Description</th>
+      <th>Active</th>
+      <th>Date</th>
+      <th>Price</th>
+      <th>Image</th>
+
+    </tr>
+    <tr *ngFor="let item of items let i=index" (click)="show(i,item.BookId,item.BookName, item.CategoryId,item.Description,item.Active,item.Date,item.Price,item.Image)">
+      <td>
+        {{i+1}}
+      </td>
+      <td> {{item.BookId}}</td>
+      <td> {{item.BookName}}</td>
+      <td> {{item.Description}}</td>
+      <td> {{item.Active}}</td>
+      <td> {{item.Date}}</td>
+      <td> {{item.Price}}</td>
+      <td><img width="100" src="https://localhost:7253/uploads/{{item.Image}}" /></td>
+
+    </tr>
+  </table>
+  <hr />
+  <!--Data: {{data2}}-->
+  <!--<button type="button" (click)="myalert('hlo')" class="btn btn-success mr-3">Alert</button>-->
+  <hr />
+  <button type="button" (click)="saveAll()" class="btn-primary btn mr-3">Save</button>
+  <button type="button" (click)="deleteAll()" class="btn btn-success mr-3">Drop</button>
+</div>

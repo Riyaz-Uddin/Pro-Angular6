@@ -1,0 +1,11 @@
+<p>Category-component works!</p>
+<div class="card">
+  <div class="card-header">
+    Category and Total Items:
+  </div>
+
+  <div *ngFor="let item of items let i=index" class="card-body">
+    <a href="https://localhost:4200?CategoryID={{item.CategoryId}}">{{item.CategoryId}} ({{item.CategoryName}}) </a>
+  </div>
+</div>
+
